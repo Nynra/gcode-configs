@@ -20,18 +20,9 @@ M204 S10000 ; init ACC set to 10m/s^2
 
 ;=============turn on fans  =================
 M106 P1 S125 ; Part fan
-; M106 P2 S50 ; AUX Fan
-; M106 P3 S25; Chamber fan NOCTUA
+M106 P2 S50 ; AUX Fan
 M106 P3 S125; Chamber fan BAMBU
 M710 A1 S255; MC-board fan automatic
-
-;=============turn on fans to prevent PLA jamming=================
-{if filament_type[initial_extruder]=="PLA"}
-    {if (bed_temperature[initial_extruder] >45)||(bed_temperature_initial_layer[initial_extruder] >45)}
-    M106 P3 S180
-    {endif};Prevent PLA from jamming
-{endif}
-M106 P2 S100 ; turn on big fan ,to cool down toolhead
 
 ;===== heatbed preheat and home ====================
 M1002 gcode_claim_action : 2

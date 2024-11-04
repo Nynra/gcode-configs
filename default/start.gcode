@@ -27,8 +27,6 @@ M1002 gcode_claim_action : 2
 M140 S[bed_temperature_initial_layer_single] ;set bed temp
 M190 S[bed_temperature_initial_layer_single] ;wait for bed temp
 
-
-
 ;=============turn on fans to prevent PLA jamming=================
 {if filament_type[initial_extruder]=="PLA"}
     {if (bed_temperature[initial_extruder] >45)||(bed_temperature_initial_layer[initial_extruder] >45)}
