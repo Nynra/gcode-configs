@@ -12,7 +12,6 @@ G380 S2 Z-25 F300 ;
 G1 Z5 F300;
 G90
 M17 X1.2 Y1.2 Z0.75 ; reset motor current to default
-M960 S5 P1 ; turn on logo lamp
 G90
 M220 S100 ;Reset Feedrate
 M221 S100 ;Reset Flowrate
@@ -62,6 +61,7 @@ M620.1 E F{filament_max_volumetric_speed[initial_extruder]/2.4053*60} T{nozzle_t
 
 M412 S1 ; ===turn on filament runout detection===
 
+;===== purge nozzle ===============================
 M109 S250 ;set nozzle to common flush temp
 M106 P1 S0
 G92 E0
@@ -78,6 +78,7 @@ M109 S{nozzle_temperature_initial_layer[initial_extruder]-20} ; drop nozzle temp
 G92 E0
 G1 E-0.5 F300
 
+;===== wipe the nozzle ===============================
 G1 X70 F9000
 G1 X76 F15000
 G1 X65 F15000
