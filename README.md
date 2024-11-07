@@ -4,8 +4,6 @@ Some gcode configurations for my P1S printer. Bambu makes amazing printers but t
 
 ## Configs
 
-The raw folder contains the gcode straight from the slicer. The gcode is not modified in any way. The following gcode configurations are each in their own folder.
-
 ### Default
 
 The default start and stop gcode for the P1S printer. While the gcode is very reliable, the start takes about 6 min to complete and wastes a lot of filament during purging.
@@ -45,7 +43,7 @@ Bambu has some mistery commands in the gcode that are not documented in the Marl
   - `0` : Clear the screen
   - `1` : Display `Auto bed leveling`
   - `2` : Display `Heatbed preheating`
-  - `3` : Dispaly `Sweeping XY mech mode`
+  - `3` : Display `Sweeping XY mech mode` (not available on P1S)
   - `4` : ?
   - `5` : ?
   - `6` : ?

@@ -84,6 +84,28 @@ G1 Y265 F3000
 M1002 judge_flag g29_before_print_flag
 M622 J1
 
+    ;===== wipe nozzle ===============================
+    M1002 gcode_claim_action : 14
+    M975 S1
+    M106 P1 S255
+    G1 X65 Y230 F18000
+    G1 Y264 F6000
+    G1 X100 F18000 ; first wipe
+    G29.2 S0 ; turn off ABL
+    G0 Z5 F12000
+    G1 X60 Y265
+    G1 X100 F5000; second wipe
+    G1 X70 F15000
+    G1 X100 F5000
+    G1 X70 F15000
+    G1 X100 F5000
+    G1 X70 F15000
+    G1 X100 F5000
+    G1 X70 F15000
+    G1 X90 F5000
+    G1 X65 F5000
+    M400
+
     M1002 gcode_claim_action : 1
     G29 A X{first_layer_print_min[0]} Y{first_layer_print_min[1]} I{first_layer_print_size[0]} J{first_layer_print_size[1]}
     M400
