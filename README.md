@@ -2,25 +2,35 @@
 
 Some gcode configurations for my P1S printer. Bambu makes amazing printers but they put significantly less effort in the gcode. The default gcode is very slow and wastes a lot of filament and sometimes even makes moves that are not necessary for this model (for example move to the front left is for the X1C QR code scan...).
 
+## Gotchas
+
+PLEASE READ BEFORE USE.
+
+The P1S is a great 3D printer but due to the high performance the operator should be aware of some gotchas:
+
+- The bed can get very hot (100C) and the normal operating temperature is around 70C, this means that the bed can burn you if you touch it too soon after the print job is done.
+- The extruder head can move quite fast and can be dangerous if you are not careful. Please either pause the print or wait until the print is done (bed should lower to presenting height) before opening the door.
+- The extruder head has a bigger XY plane than the bed, this means that the extruder can be outside of the bed area (used for wiping, etc.). Normally this isnt an issue, but when the print is cancelled when the extruder is outside of the bed area, the next Z homing or bed leveling will fail (bed cannot find the nozzle in z range). To fix this, move the extruder head to somewhere within the bed area before starting Z homing or bed leveling.
+
 ## Configs
 
 ### Default
 
 The default start and stop gcode for the P1S printer. While the gcode is very reliable, the start takes about 6 min to complete and wastes a lot of filament during purging.
 
-### Fast
+### Optimized
 
-The fast start and stop gcode for the P1S printer. The start takes about 3 min to complete and improves on the following:
+The optimized start and stop gcode for the P1S printer. The start takes about 3 min to complete and improves on the following:
 
 - Preperation order is more efficient (preheating during movement, etc.)
 - Purging is reduced to a minimum
-- The bed is not leveled before every print (only if the tick mark in the slicer is set)
+- Extruder head is stored above the trash bin after the print is done to prevent oozing or the operator touching the hot nozzle by accident when removing the print.
 
-While the fast gcode is much faster and uses less filament, it is less reliable than the default gcode and skips some pre-print tests like the skirt line. If you have problems with the fast gcode, try the default gcode.
+Filament changing is also improved:
 
-### Optimized
-
-The optimized start and stop gcode is a balance between the default and fast gcode. The start takes about 4 min to complete and improves on the same points as the fast gcode, except that the pre-print tests are not skipped.
+- The filament is retracted before the filament change (to prevent oozing and shorten the length of filament that is cut and purged)
+- Heating starts before the filament change (to reduce the time the printer is idle)
+- The extruder head moved directly to the trash bin.
 
 ## Bambu Gcode commands
 
@@ -35,7 +45,7 @@ Bambu has some mistery commands in the gcode that are not documented in the Marl
   Subcommands:
   - `M622.1 S1`? something to do with firmware being on or off
 - `M623` Set the timelapse record flag. This should be set once in the start and once in the stop gcode
-- `M970.3 Q1 A7 B30 C80 H15 K0`, `M970.3 Q0 A7 B30 C90 Q0 H15 K0` ? no idea
+- `M970.3 Q1 A7 B30 C80 H15 K0`, `M970.3 Q0 A7 B30 C90 Q0 H15 K0` Machine self testing, no idea what the attributes do or what is done with the results.
 - `M974 Q1 S2 P0`, `M974 Q0 S2 P0` ? no idea
 - `M975 Sn` where `n` is either `0` or `1`. This command is used to enable or disable the vibration suppression.
 - `M991 S0 P-1` end smooth timelapse at safe pos
