@@ -54,15 +54,8 @@ Bambu has some mistery commands in the gcode that are not documented in the Marl
   - `1` : Display `Auto bed leveling`
   - `2` : Display `Heatbed preheating`
   - `3` : Display `Sweeping XY mech mode` (not available on P1S)
-  - `4` : ?
-  - `5` : ?
-  - `6` : ?
+  - `4` : ? In end gcode but unknown
   - `7` : Display `Heating hotend`
-  - `8` : ?
-  - `9` : ?
-  - `10` : ?
-  - `11` : ?
-  - `12` : ?
   - `13` : Display `Homing toolhead`
   - `14` : Display `Cleaning nozzle tip`
 

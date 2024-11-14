@@ -12,7 +12,7 @@ G92 E0 ; zero the extruder
 G1 E-0.3 F600 ; retract, 0,8mm retract is done automatically by Slicer
 M104 S175 ; Lower nozzle temp
 G1 Z{max_layer_z + 5} F900 ; lower z a little
-G1 X70 Y265 F9000 ; move to the bin 
+G1 X65 Y265 F9000 ; move to the bin 
 ; G1 X65 Y255 F12000 ; move to safe pos
 M400 S5; wait
 G92 E0 ; zero the extruder
@@ -21,17 +21,17 @@ M400 S5; wait
 G92 E0 ; zero the extruder
 G1 Y265 F3000
 M140 S0 ; turn off bed
-G1 X100 F12000 ; wipe
-G1 X60 Y265 F12000
+; G1 X100 F12000 ; wipe
+; G1 X60 Y265 F12000
 M1002 gcode_claim_action : 4
 
 ;====== cut filament =======
 M620 S255
-G1 X20 Y50 F12000
-G1 Y-3
+; G1 X20 Y50 F12000
+; G1 Y-3
 T255
-G1 X65 F12000
-G1 Y265
+; G1 X65 F12000
+; G1 Y265
 M621 S255; pull back filament to AMS
 
 ;===== wipe nozzle =======
